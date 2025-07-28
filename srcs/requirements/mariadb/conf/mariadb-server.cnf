@@ -1,0 +1,31 @@
+#
+# These groups are read by MariaDB server.
+# Use it for options that only the server (but not clients) should see
+
+# this is read by the standalone daemon and embedded servers
+[server]
+
+# this is only for the mysqld standalone daemon
+[mysqld]
+# skip-networking
+bind-address = 0.0.0.0
+port = 3306
+
+# Galera-related settings
+[galera]
+# Mandatory settings
+#wsrep_on=ON
+#wsrep_provider=
+#wsrep_cluster_address=
+#binlog_format=row
+#default_storage_engine=InnoDB
+#innodb_autoinc_lock_mode=2
+
+# this is only for embedded server
+[embedded]
+
+# This group is only read by MariaDB servers, not by MySQL.
+[mariadb]
+
+# This group is only read by MariaDB-10.5 servers.
+[mariadb-10.5]
