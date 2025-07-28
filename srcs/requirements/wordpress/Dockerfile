@@ -7,7 +7,6 @@ RUN apk add --no-cache \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install mysqli pdo pdo_mysql zip gd
 
-# WordPress dans l'image (comme avant)
 RUN wget https://wordpress.org/wordpress-6.8.1.zip -O /tmp/wordpress.zip \
     && unzip /tmp/wordpress.zip -d /tmp \
     && mv /tmp/wordpress/* /var/www/html \
