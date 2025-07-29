@@ -1,31 +1,28 @@
-#
-# These groups are read by MariaDB server.
-# Use it for options that only the server (but not clients) should see
-
-# this is read by the standalone daemon and embedded servers
-[server]
-
-# this is only for the mysqld standalone daemon
 [mysqld]
-# skip-networking
+user = mysql
 bind-address = 0.0.0.0
 port = 3306
+datadir = /var/lib/mysql
+socket = /run/mysqld/mysqld.sock
+pid-file = /run/mysqld/mysqld.pid
+log-error = /var/lib/mysql/error.log
 
-# Galera-related settings
-[galera]
-# Mandatory settings
-#wsrep_on=ON
-#wsrep_provider=
-#wsrep_cluster_address=
-#binlog_format=row
-#default_storage_engine=InnoDB
-#innodb_autoinc_lock_mode=2
+# Sécurité réseau
+skip-networking = 0
+skip-bind-address = 0
 
-# this is only for embedded server
-[embedded]
+# Optimisations basiques
+innodb_buffer_pool_size = 256M
+max_connections = 100
+query_cache_size = 16M
+query_cache_type = 1
 
-# This group is only read by MariaDB servers, not by MySQL.
-[mariadb]
+# Encodage
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
 
-# This group is only read by MariaDB-10.5 servers.
-[mariadb-10.5]
+[mysql]
+default-character-set = utf8mb4
+
+[client]
+default-character-set = utf8mb4
