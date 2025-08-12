@@ -15,8 +15,9 @@ logs:
 clean:
 	$(DC) down --rmi all
 
-fclean:
-	docker system prune -a
+fclean: clean
+	docker compose -f srcs/docker-compose.yml down -v
+	docker system prune -a -f
 
 re: clean all
 

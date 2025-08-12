@@ -25,7 +25,7 @@ if [ ! -f "wp-config-sample.php" ]; then
     chown -R www-data:www-data /var/www/html
 fi
 
-# Tentative de connexion avec retry
+# Tentative de connexion avec retry (adapté pour les secrets)
 echo "Testing database connection..."
 for i in {1..10}; do
     if mysql -h"$DB_HOST" -u"$MYSQL_USER" -p"$(cat /run/secrets/mysql_user_password)" "$MYSQL_DATABASE" -e "SELECT 1;" > /dev/null 2>&1; then
@@ -76,5 +76,5 @@ chown -R www-data:www-data /var/www/html
 find /var/www/html -type d -exec chmod 755 {} \;
 find /var/www/html -type f -exec chmod 644 {} \;
 
-# Démarrer PHP-FPM
-exec php-fpm
+# Démarrer PHP-FPM (adapté pour Alpine + PHP 8.3)
+exec php-fpm83 --nodaemonize --fpm-config /etc/php83/php-fpm.conf
